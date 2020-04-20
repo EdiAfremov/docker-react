@@ -1,4 +1,4 @@
-sudo: required 
+sudo: required
 services:
     - dokcer
 before_install:
@@ -14,6 +14,7 @@ deploy:
     env: "DockerReact-env"
     bucket_name: "elasticbeanstalk-eu-central-1-314856315903"
     bucket_path: "docker-react"
+    edge: true
     on:
         branch: master
 
