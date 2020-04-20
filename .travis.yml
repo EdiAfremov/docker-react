@@ -4,9 +4,11 @@ services:
 before_install:
     - docker build -t tests -f DockerFile.dev .
 script:
-    - docker run -e CI=true tests npm run test
+    - docker run -e CI=true tests npm run test -- --coverage
 deploy:
     provider: elasticbeanstalk
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
     region: "eu-central-1"
     app: "docker-react"
     env: "DockerReact-env"
@@ -14,8 +16,7 @@ deploy:
     bucket_path: "docker-react"
     on:
         branch: master
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
+
 
 
 
